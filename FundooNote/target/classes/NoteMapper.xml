@@ -20,8 +20,7 @@
 
 	</resultMap>
 
-	<insert id="insertNote" parameterType="Note"
-		useGeneratedKeys="true">
+	<insert id="insertNote" parameterType="Note" useGeneratedKeys="true">
 		insert into
 		fundoonote(title,description,user_id,lastaccessdate)
 		values(#{title},#{description},#{user.user_id},#{lastaccessdate})
@@ -40,7 +39,8 @@
 	</delete>
 
 	<select id="getNotebyId" parameterType="Note" resultType="Note">
-		select * from fundoonote where notes_id=#{notes_id}
+		select
+		* from fundoonote where notes_id=#{notes_id}
 	</select>
 
 	<select id="selectAllNotes" parameterType="Note" resultMap="NoteMap">
@@ -48,11 +48,11 @@
 	</select>
 
 	<select id="getAllNotes" parameterType="Note" resultMap="NoteMap">
-		select * from fundoonote
+		select *
+		from fundoonote
 	</select>
 
-	<select id="selectUserFromNote" parameterType="Note"
-		resultType="User">
+	<select id="selectUserFromNote" parameterType="Note" resultType="User">
 		select * from fundoouser where user_id=#{user.user_id}
 	</select>
 
@@ -74,4 +74,14 @@
 		and
 		notes_id=#{notes_id}
 	</update>
+
+	<select id="addCollaborators" parameterType="String" resultType="User">
+		select * from fundoouser where email=#{email}
+	</select>
+
+	<select id="getAllCollaborators" parameterType="Integer"
+		resultType="collabrator">
+		select * from collaborator where notes_id=#{notes_id}
+	</select>
+
 </mapper> 

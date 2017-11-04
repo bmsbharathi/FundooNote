@@ -25,10 +25,10 @@ public class NoteController {
 	private static final Logger logger = Logger.getLogger(NoteController.class);
 
 	@Autowired
-	NoteService service;
+	private NoteService service;
 
 	@Autowired
-	ElasticSearch elasticsearch;
+	private ElasticSearch elasticsearch;
 
 	Response resp = new Response();
 
@@ -141,6 +141,7 @@ public class NoteController {
 			logger.info("Deleted the node permanently");
 			resp.setStatus(note.getUser().getUser_id());
 			resp.setMessage("Node deleted from trash");
+			elasticsearch.deleteElasticNotes(note.getNotes_id());
 		} else {
 
 			logger.info("Not deleted");
@@ -163,4 +164,13 @@ public class NoteController {
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
 	}
 
+	// Funtionalities for Collabrators
+	@RequestMapping(value = "addCollabrators", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Response> addCollaborators(@RequestBody List<Integer> newCollabs,int noteid) {
+
+		List<Integer> collabs = service.checkExistingCollabrators(noteid);
+		logger.info(""+collabs);
+		return new ResponseEntity<Response>(new Response(), HttpStatus.OK);
+	}
 }

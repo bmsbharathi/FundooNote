@@ -16,7 +16,7 @@ import com.bridgeit.note.mybatisutility.MyBatisUtil;
 public class NoteMapperImpl implements NoteMapper {
 
 	@Autowired
-	ElasticSearch elasticSearch;
+	private ElasticSearch elasticSearch;
 
 	private static final Logger logger = Logger.getLogger(NoteMapperImpl.class);
 	private SqlSession session;
@@ -161,12 +161,32 @@ public class NoteMapperImpl implements NoteMapper {
 
 			allNotes = notemapper.getAllNotes();
 			session.commit();
-			logger.info("Remainder set in the database");
+			logger.info("getting all Notes from the database");
 		} finally {
 			session.close();
 		}
 
 		return allNotes;
+	}
+
+	public List<Integer> getAllCollaborators(int noteid) {
+
+		session = MyBatisUtil.getSqlSessionFactory().openSession();
+		List<Integer> allCollabs = null;
+
+		try {
+
+			NoteMapper notemapper = session.getMapper(NoteMapper.class);
+			allCollabs = notemapper.getAllCollaborators(noteid);
+			session.commit();
+			logger.info("getting all Collabrators of " + noteid + " the database");
+		
+		} finally {
+			session.close();
+		}
+		
+		return allCollabs;
+
 	}
 
 }

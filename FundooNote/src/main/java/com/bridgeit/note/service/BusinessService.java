@@ -22,16 +22,16 @@ import com.bridgeit.note.validator.UserValidator;
 public class BusinessService {
 
 	@Autowired
-	UtilityService service;
+	private UtilityService service;
 
 	@Autowired
-	UserValidator formvalid;
+	private UserValidator formvalid;
 
 	@Autowired
-	EmailUtility email;
+	private EmailUtility email;
 
 	@Autowired
-	TaskExecutor taskExecutor;
+	private TaskExecutor taskExecutor;
 
 	private Logger logger = Logger.getLogger(UserController.class);
 
@@ -73,7 +73,8 @@ public class BusinessService {
 
 			return tokenobject;
 		} else {
-
+			
+			tokenobject = new TokenResponse();
 			logger.info("Login failed");
 			tokenobject.setToken(null);
 			tokenobject.setUserstatus("Invalid Credentials");

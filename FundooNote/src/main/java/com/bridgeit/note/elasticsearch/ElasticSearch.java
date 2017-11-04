@@ -20,7 +20,6 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,12 +51,12 @@ public class ElasticSearch {
 		}
 	}
 
-	//@Scheduled(fixedDelay = 100000)
+	/* @Scheduled(fixedDelay = 100000) */
 	public void indexAllNotes() {
 		System.out.println("Indexing..");
 		try {
 
-			List<Note> notes = noteService.getAllNotes();
+			List<Note> notes = noteService.getAllNotes(); // Getting the list of Notes from the Database
 			for (Note note : notes) {
 				logger.info(note);
 
@@ -74,6 +73,7 @@ public class ElasticSearch {
 
 			logger.info("In ElasticSearch" + notes);
 			logger.info("In ElasticSearch Getting notes ");
+
 		} catch (UnknownHostException e) {
 
 			e.printStackTrace();
@@ -89,20 +89,12 @@ public class ElasticSearch {
 		logger.warn("Notes ID..." + noteid);
 		Response resp = null;
 
-		try {
-
-			resp = new Response();
-			logger.info("Delete Note in ElasticSearch UnderProcess");
-			resp.setStatus(5);
-			resp.setMessage("Deleting in Elastic Search");
-			client = new PreBuiltTransportClient(Settings.EMPTY)
-					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
-			client.prepareDelete("fundoo", "notes", String.valueOf(noteid)).get();
-			logger.info("Delete Elastic Note Performed");
-		} catch (UnknownHostException e) {
-
-			e.printStackTrace();
-		}
+		resp = new Response();
+		logger.info("Delete Note in ElasticSearch UnderProcess");
+		resp.setStatus(5);
+		resp.setMessage("Deleting in Elastic Search");
+		client.prepareDelete("fundoo", "notes", String.valueOf(noteid)).get();
+		logger.info("Delete Elastic Note Performed");
 
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
 	}
@@ -116,7 +108,7 @@ public class ElasticSearch {
 
 		try {
 
-																																																																																																																																																																																																																																																										logger.info("Search UnderProcess");
+			logger.info("Search UnderProcess");
 			client = new PreBuiltTransportClient(Settings.EMPTY)
 					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
 

@@ -22,16 +22,16 @@ public class SendMail {
 	public void setMailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
-	
+
 	@RequestMapping("dummy")
 	public void dummyMethod() {
-	
+
 		System.out.println("Hellooooooo");
 	}
-	
+
 	@RequestMapping("sendMail")
 	public void sendMail() {
-			
+
 		System.out.println("Hello");
 		try {
 
@@ -42,7 +42,7 @@ public class SendMail {
 			mimeHelper.setText("Hello...Hello");
 			mimeHelper.setSubject("Welcome");
 			mailSender.send(message);
-			
+
 		} catch (MessagingException e) {
 
 			e.printStackTrace();

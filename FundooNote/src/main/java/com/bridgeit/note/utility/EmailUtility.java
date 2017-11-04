@@ -41,7 +41,6 @@ public class EmailUtility {
 
 			password[i] = otp.charAt(new Random().nextInt(otp.length()));
 		}
-		System.out.println(password);
 
 		return new String(password);
 	}

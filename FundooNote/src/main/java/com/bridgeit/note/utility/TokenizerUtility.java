@@ -21,7 +21,7 @@ public class TokenizerUtility {
 	static String CLIENT_ID = "abcde";
 	final static String CLIENT_SECRET = "asdasdxccvxc";
 
-	//Creating a new JWT token
+	// Creating a new JWT token
 	public static String getToken(User reg)
 
 	{
@@ -48,7 +48,7 @@ public class TokenizerUtility {
 	}
 
 	public static int verifyToken(String token) {
-		
+
 		Claims claims = Jwts.parser().setSigningKey(CLIENT_SECRET).parseClaimsJws(token).getBody();
 		logger.info(claims.getId());
 		logger.info(claims.getIssuedAt());
@@ -66,9 +66,9 @@ public class TokenizerUtility {
 
 	}
 
-	//Getting the expiry date set in the Token
+	// Getting the expiry date set in the Token
 	public static Date verifyTokenDate(String token) {
-		
+
 		Claims claims = Jwts.parser().setSigningKey(CLIENT_SECRET).parseClaimsJws(token).getBody();
 		Date expdate = claims.getExpiration();
 		return expdate;

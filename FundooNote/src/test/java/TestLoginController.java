@@ -19,12 +19,10 @@ import io.restassured.response.Response;
 
 public class TestLoginController {
 
-	static Login user1;
-	static Login user2;
-	static Login user3, user4;
-	static User reg1, reg2;
-	static Note note1, note2, note3, note4, note5, note6;
-	Logger logger = Logger.getLogger(TestRegisterController.class);
+	private static Login user2, user4, user1;
+	private static User reg1, reg2;
+	private static Note note1, note2, note3, note4, note5, note6;
+	private final Logger logger = Logger.getLogger(TestRegisterController.class);
 
 	@BeforeClass
 	public static void setup() {
@@ -80,7 +78,6 @@ public class TestLoginController {
 	@Ignore
 	public void testLogin() {
 
-		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQzNDIxMCwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NDM4MjEwfQ.cd3UpaVXuvJqAWAOd-Hc7I_kV8JIWP7B2Ud2BjTn-tQ";
 		logger.info("testlogin()");
 		Response resp = given().contentType("application/json").body(user1).when().post("login");
 		logger.info(resp.asString());
@@ -105,60 +102,57 @@ public class TestLoginController {
 
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQzNDIxMCwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NDM4MjEwfQ.cd3UpaVXuvJqAWAOd-Hc7I_kV8JIWP7B2Ud2BjTn-tQ";
 		System.out.println("Testing Notes Functionalities");
-		/* Response resp = */given().contentType("application/json").header("token", token).body(note1).when()
-				.post("auth/insertNote").then().statusCode(200);
-		/* logger.info(resp.asString()); */
+		given().contentType("application/json").header("token", token).body(note1).when().post("auth/insertNote").then()
+				.statusCode(200);
 
 	}
 
 	@Test
 	@Ignore
 	public void testFilter2() {
-		// String jsonString =user1.toJSONString;
+
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjM0NSIsImlhdCI6MTUwOTE3MTkzOSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiQW5pa2V0aCdzIFRva2VucyIsIk5hbWUiOiJBbmlrZXRoIEJvbmRhZGEiLCJNb2JpbGUiOjEyMzQ1LCJJZCI6MSwiZXhwIjoxNTA5MTc1OTM5fQ.6YnPuGXoJSMde8tA1JwI2dLvjV3uSYRpM7R0e594wig";
 		System.out.println("Testing Notes Functionalities");
-		/* Response resp = */given().contentType("application/json").header("token", token).body(note2).when()
-				.post("auth/updateNote").then().statusCode(200);
-		/* logger.info(resp.asString()); */
+		given().contentType("application/json").header("token", token).body(note2).when().post("auth/updateNote").then()
+				.statusCode(200);
 
 	}
 
 	@Test
 	@Ignore
 	public void testFilter3() {
-		// String jsonString =user1.toJSONString;
+
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjM0NSIsInN1YiI6IkpXVCBUb2tlbiIsImlzcyI6IkFuaWtldGgncyBUb2tlbnMiLCJOYW1lIjoiQmhhcmF0aGkiLCJNb2JpbGUiOjczNzMsIklkIjoyfQ.99TE3zxvrU4fistZ5_JWcVZO71dqxPW6v4RgJbAD2q0";
 		System.out.println("Testing Notes Functionalities");
-		/* Response resp = */given().contentType("application/json").header("token", token).body(note3).when()
-				.post("auth/deleteNote").then().statusCode(200);
-		/* logger.info(resp.asString()); */
+		given().contentType("application/json").header("token", token).body(note3).when().post("auth/deleteNote").then()
+				.statusCode(200);
 
 	}
 
 	@Test
 	@Ignore
 	public void testFilter4() {
-		// String jsonString =user1.toJSONString;
+
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjM0NSIsInN1YiI6IkpXVCBUb2tlbiIsImlzcyI6IkFuaWtldGgncyBUb2tlbnMiLCJOYW1lIjoiQmhhcmF0aGkiLCJNb2JpbGUiOjczNzMsIklkIjoyfQ.99TE3zxvrU4fistZ5_JWcVZO71dqxPW6v4RgJbAD2q0";
 		System.out.println("Testing Notes Functionalities");
-		/* Response resp = */given().contentType("application/json").header("token", token).body(note4).when()
-				.post("auth/getNotebyId").then().statusCode(200);
-		/* logger.info(resp.asString()); */
-
+		given().contentType("application/json").header("token", token).body(note4).when().post("auth/getNotebyId")
+				.then().statusCode(200);
 	}
 
 	@Test
 	@Ignore
 	public void testNotes() {
 
-		note1.setNotes_id(4);
-		reg1.setUser_id(8);
+		note1.setNotes_id(5);
+		reg1.setUser_id(11);
 		note1.setUser(reg1);
 		note1.setTrash(true);
+		note1.setDeletefromtrash(true);
+		;
 		logger.warn("Testing Notes Functionalities");
-		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQzMDE0MSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6MTAsImV4cCI6MTUwOTQzNDE0MX0.T2aAfPvniIoWxJn87kb8WsMV40ToWb_RewFxmtdNdHI";
-		given().contentType(ContentType.JSON).header("token", token).body(note1).when().post("auth/trashNote").then()
-				.statusCode(200);
+		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQ1MDY4MSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NDU0NjgxfQ.ydGwCeQA7LQMH1YyyBSjATEkKnwqAncRvRLsuDB1fqk";
+		given().contentType(ContentType.JSON).header("token", token).body(note1).when().post("auth/deleteFromTrash")
+				.then().statusCode(200);
 
 	}
 
@@ -197,6 +191,17 @@ public class TestLoginController {
 		logger.warn("Indexing all Notes");
 		given().contentType(ContentType.JSON).header("token", token).body(note6).when().post("auth/indexAllNotes")
 				.then().statusCode(200);
+
+	}
+
+	@Test
+
+	public void testCollabrator() {
+
+		logger.warn("Testing Collabrator - adding collabrators");
+		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTYwMTU2Nywic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NjA1NTY3fQ.oVeGRg08bDqnsYWyWrtt_RHJ5UXcJf6qVn8AirxpdvQ";
+		given().contentType(ContentType.JSON).header("token", token).param("collabId", 10).when()
+				.post("auth/addCollaborators").then().statusCode(200);
 
 	}
 

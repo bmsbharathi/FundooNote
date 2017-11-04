@@ -22,7 +22,7 @@ import com.bridgeit.note.service.BusinessService;
 public class UserController {
 
 	@Autowired
-	BusinessService businessService;
+	private BusinessService businessService;
 
 	private Logger logger = Logger.getLogger(UserController.class);
 

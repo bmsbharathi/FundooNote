@@ -26,25 +26,6 @@
 		<property name="queueCapacity" value="25" />
 	</bean>
 
-	<!-- <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-		<property name="brokerURL" value="tcp://localhost:61616"></property>
-	</bean>
-	<bean id="messageDestination" class="org.apache.activemq.command.ActiveMQQueue">
-		<constructor-arg value="messageQueue1"></constructor-arg>
-	</bean>
-	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory" ref="connectionFactory"></property>
-		<property name="receiveTimeout" value="10000"></property>
-	</bean>
-	<bean id="springJmsProducer" class="com.bridgeit.note.jms.SpringJmsProducer">
-		<property name="destination" ref="messageDestination"></property>
-		<property name="jmsTemplate" ref="jmsTemplate"></property>
-	</bean>
-	<bean id="springJmsConsumer" class="com.bridgeit.note.jms.SpringJmsConsumer">
-		<property name="destination" ref="messageDestination"></property>
-		<property name="jmsTemplate" ref="jmsTemplate"></property>
-	</bean> -->
-
 	<bean id="elasticSearch" class="com.bridgeit.note.elasticsearch.ElasticSearch"
 		init-method="startUp" destroy-method="stopClient"></bean>
 

@@ -1,6 +1,7 @@
 package com.bridgeit.note.service;
- 
-import org.springframework.beans.factory.annotation.Autowired; 
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bridgeit.note.dao.UserMapper;
@@ -11,22 +12,25 @@ import com.bridgeit.note.model.User;
 public class UtilityService {
 
 	@Autowired
-	UserMapper userMapperImpl;
+	private UserMapper userMapperImpl;
+
+	private Logger logger = Logger.getLogger(UtilityService.class);
 
 	public void insertuser(User user) {
-		System.out.println("insertuser");
+
 		userMapperImpl.insertUser(user);
-		System.out.println("insertuser");
+		logger.warn("insertuser");
 	}
 
 	public User getUser(Login user) {
-		
-		System.out.println("Inside UserService - GetUser()");
+
+		logger.warn("Inside UserService - GetUser()");
 		User reg = userMapperImpl.getUser(user);
 		return reg;
 	}
 
 	public User checkUser(String uname) {
+
 		User reg = userMapperImpl.checkUser(uname);
 		System.out.println(reg);
 		return reg;
@@ -35,12 +39,13 @@ public class UtilityService {
 	public void updateUser(String password, String usernameupdation) {
 
 		userMapperImpl.updateUser(password, usernameupdation);
-		System.out.println();
+		logger.warn("UtiltiyService - updateUser()");
 	}
 
 	public User checkUserByEmail(String email) {
+
 		User reg = userMapperImpl.checkUserByEmail(email);
-		System.out.println(reg);
+		logger.warn("UtilityService - checkUserByEmail " + reg);
 		return reg;
 	}
 
