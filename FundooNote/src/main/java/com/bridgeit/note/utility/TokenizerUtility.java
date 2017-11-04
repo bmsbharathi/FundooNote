@@ -32,7 +32,7 @@ public class TokenizerUtility {
 		logger.info("----------------------" + reg);
 		JwtBuilder builder = Jwts.builder().setId(CLIENT_ID).setIssuedAt(now).setSubject("JWT Token")
 				.setIssuer("FundooApplication").claim("Name", reg.getFullName()).claim("Mobile", reg.getMobileNo())
-				.claim("Id", reg.getUser_id()).signWith(SignatureAlgorithm.HS256, CLIENT_SECRET);
+				.claim("Id", reg.getUserId()).signWith(SignatureAlgorithm.HS256, CLIENT_SECRET);
 
 		long exptime = 4000000;
 		if (exptime >= 0) {

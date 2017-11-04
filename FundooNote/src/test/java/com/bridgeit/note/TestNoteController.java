@@ -28,7 +28,7 @@ public class TestNoteController {
 
 		note1 = new Note();
 		user1 = new User();
-		user1.setUser_id(8);
+		user1.setUserId(8);
 		note1.setTitle("Soccer");
 		note1.setDescription("A beautiful game in peace");
 		note1.setLastaccessdate(new Date());
@@ -38,42 +38,42 @@ public class TestNoteController {
 		user2 = new User();
 		note2.setTitle("Criket");
 		note2.setDescription("A bat and ball game in a ground");
-		note2.setNotes_id(7);
+		note2.setNotesId(7);
 		note2.setUser(user2);
 
 		note3 = new Note();
 		user3 = new User();
-		user3.setUser_id(1);
-		note3.setNotes_id(17);
+		user3.setUserId(1);
+		note3.setNotesId(17);
 		note3.setUser(user3);
 
 		note4 = new Note();
-		note4.setNotes_id(8);
+		note4.setNotesId(8);
 
 		note5 = new Note();
 		user5 = new User();
-		user5.setUser_id(4);
+		user5.setUserId(4);
 		note5.setUser(user5);
 
 		note6 = new Note();
 		user6 = new User();
-		user6.setUser_id(5);
-		note6.setNotes_id(36);
+		user6.setUserId(5);
+		note6.setNotesId(36);
 		note6.setArchive(true);
 		note6.setUser(user6);
 
 		noteunarchive = new Note();
 		userunarchive = new User();
-		userunarchive.setUser_id(5);
-		noteunarchive.setNotes_id(36);
+		userunarchive.setUserId(5);
+		noteunarchive.setNotesId(36);
 		noteunarchive.setArchive(false);
 		noteunarchive.setUser(userunarchive);
 
 		/* Sending note to trash */
 		note7 = new Note();
 		user7 = new User();
-		user7.setUser_id(4);
-		note7.setNotes_id(48);
+		user7.setUserId(4);
+		note7.setNotesId(48);
 		note7.setTrash(true);
 		note7.setRemainder(new Date());
 		note7.setDeletefromtrash(false);
@@ -82,16 +82,16 @@ public class TestNoteController {
 		/* Permanent deletion of the note */
 		note8 = new Note();
 		user8 = new User();
-		user8.setUser_id(5);
-		note8.setNotes_id(34);
+		user8.setUserId(5);
+		note8.setNotesId(34);
 		note8.setTrash(true);
 		note8.setDeletefromtrash(true);
 		note8.setUser(user7);
 
 		note9 = new Note();
 		user9 = new User();
-		user9.setUser_id(9);
-		note9.setNotes_id(40);
+		user9.setUserId(9);
+		note9.setNotesId(40);
 		note9.setRemainder(new Date());
 		note9.setUser(user9);
 

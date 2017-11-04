@@ -24,11 +24,11 @@ public class Collabrator {
 		this.sharedToId = sharedToId;
 	}
 
-	public int getNotes_id() {
+	public int getNotesId() {
 		return notes_id;
 	}
 
-	public void setNotes_id(int notes_id) {
+	public void setNotesId(int notes_id) {
 		this.notes_id = notes_id;
 	}
 

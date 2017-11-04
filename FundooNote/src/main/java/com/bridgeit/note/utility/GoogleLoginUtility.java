@@ -31,9 +31,11 @@ public class GoogleLoginUtility {
 	public static String getGmailUrl(String apiRedirectUrl, String stateCode) {
 
 		logger.warn("Inside Gmail URL");
-		apiRedirectUrl = apiRedirectUrl + sGmail_REDIRECT_URI;
+		apiRedirectUrl.concat(sGmail_REDIRECT_URI);
+		String gmailUrl = new String().format(sGmail_URL,
+				new String[] { sGmail_CLIENT_ID, apiRedirectUrl, stateCode, sScope });
 
-		return new String().format(sGmail_URL, new String[] { sGmail_CLIENT_ID, apiRedirectUrl, stateCode, sScope });
+		return gmailUrl;
 
 	}
 
@@ -84,7 +86,7 @@ public class GoogleLoginUtility {
 		GoogleToken token = response.readEntity(GoogleToken.class);
 		logger.warn(token);
 		client.close();
-		return token.getAccess_token();
+		return token.getAccessToken();
 
 	}
 }

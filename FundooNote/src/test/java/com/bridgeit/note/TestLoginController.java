@@ -42,7 +42,7 @@ public class TestLoginController {
 
 		note1 = new Note();
 		reg1 = new User();
-		reg1.setUser_id(11);
+		reg1.setUserId(11);
 		note1.setTitle("hello hello");
 		note1.setDescription("hi hi hih ih");
 		note1.setLastaccessdate(new Date());
@@ -53,25 +53,25 @@ public class TestLoginController {
 		note2 = new Note();
 		note2.setTitle("Criket");
 		note2.setDescription("A bat and ball game in a ground");
-		note2.setNotes_id(26);
+		note2.setNotesId(26);
 
 		note3 = new Note();
 		reg2 = new User();
-		reg2.setUser_id(4);
-		note3.setNotes_id(26);
+		reg2.setUserId(4);
+		note3.setNotesId(26);
 		note3.setUser(reg2);
 
 		note4 = new Note();
-		note4.setNotes_id(8);
+		note4.setNotesId(8);
 
 		note5 = new Note();
 		reg2 = new User();
-		reg2.setUser_id(1);
+		reg2.setUserId(1);
 		note5.setUser(reg2);
 
 		note6 = new Note();
 		reg2 = new User();
-		reg2.setUser_id(8);
+		reg2.setUserId(8);
 		note6.setUser(reg2);
 	}
 
@@ -144,8 +144,8 @@ public class TestLoginController {
 	@Ignore
 	public void testNotes() {
 
-		note1.setNotes_id(5);
-		reg1.setUser_id(11);
+		note1.setNotesId(5);
+		reg1.setUserId(11);
 		note1.setUser(reg1);
 		note1.setTrash(true);
 		note1.setDeletefromtrash(true);

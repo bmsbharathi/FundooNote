@@ -53,7 +53,7 @@ public class ElasticSearch {
 
 	/* @Scheduled(fixedDelay = 100000) */
 	public void indexAllNotes() {
-		System.out.println("Indexing..");
+		logger.info("Indexing..");
 		try {
 
 			List<Note> notes = noteService.getAllNotes(); // Getting the list of Notes from the Database
@@ -62,11 +62,11 @@ public class ElasticSearch {
 
 				XContentBuilder builder;
 
-				builder = jsonBuilder().startObject().field("userid", note.getUser().getUser_id())
-						.field("noteid", note.getNotes_id()).field("title", note.getTitle())
+				builder = jsonBuilder().startObject().field("userid", note.getUser().getUserId())
+						.field("noteid", note.getNotesId()).field("title", note.getTitle())
 						.field("description", note.getDescription()).endObject();
 				String json = builder.string();
-				client.prepareIndex("fundoo", "notes").setId(Integer.toString(note.getNotes_id())).setSource(json)
+				client.prepareIndex("fundoo", "notes").setId(Integer.toString(note.getNotesId())).setSource(json)
 						.execute().actionGet();
 
 			}
