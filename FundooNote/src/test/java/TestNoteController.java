@@ -122,28 +122,32 @@ public class TestNoteController {
 	@Ignore
 	public void testgetNotebyId() {
 
-		given().contentType(ContentType.JSON).body(note4).when().post("getNotebyId").then().statusCode(200).assertThat();
+		given().contentType(ContentType.JSON).body(note4).when().post("getNotebyId").then().statusCode(200)
+				.assertThat();
 	}
 
 	@Test
 	@Ignore
 	public void testgetallNotes() {
 
-		given().contentType(ContentType.JSON).body(note5).when().post("selectAllNotes").then().statusCode(200).assertThat();;
+		given().contentType(ContentType.JSON).body(note5).when().post("selectAllNotes").then().statusCode(200)
+				.assertThat();
 	}
 
 	@Test
 	@Ignore
 	public void archiveNote() {
 
-		given().contentType(ContentType.JSON).body(note6).when().post("archiveNote").then().statusCode(200).assertThat();
+		given().contentType(ContentType.JSON).body(note6).when().post("archiveNote").then().statusCode(200)
+				.assertThat();
 	}
 
 	@Test
 	@Ignore
 	public void unarchiveNote() {
 
-		given().contentType(ContentType.JSON).body(noteunarchive).when().post("archiveNote").then().statusCode(200).assertThat();
+		given().contentType(ContentType.JSON).body(noteunarchive).when().post("archiveNote").then().statusCode(200)
+				.assertThat();
 	}
 
 	@Test
@@ -156,7 +160,8 @@ public class TestNoteController {
 	@Ignore
 	public void deletefromtrash() {
 
-		given().contentType(ContentType.JSON).body(note7).when().post("deleteFromTrash").then().statusCode(200).assertThat();
+		given().contentType(ContentType.JSON).body(note7).when().post("deleteFromTrash").then().statusCode(200)
+				.assertThat();
 	}
 
 	@Test
@@ -164,9 +169,8 @@ public class TestNoteController {
 	public void setRemainder() {
 
 		logger.info("Setting Remainder");
-		Response resp = given().contentType(ContentType.JSON).body(note7).when().post("setRemainder");
-		logger.info(resp.asString());
-		logger.info(resp.then().statusCode(200).assertThat());
+		given().contentType(ContentType.JSON).body(note7).when().post("setRemainder").then().statusCode(200)
+				.assertThat();
 	}
 
 }

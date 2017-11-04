@@ -39,7 +39,7 @@ public class ElasticSearch {
 	private static final Logger logger = Logger.getLogger(ElasticSearch.class);
 	private TransportClient client;
 
-	void startUp() {
+	public void startUp() {
 
 		try {
 
