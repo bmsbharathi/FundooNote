@@ -30,7 +30,7 @@ public class NoteController {
 	@Autowired
 	private ElasticSearch elasticsearch;
 
-	Response resp = new Response();
+	private Response resp = new Response();
 
 	@RequestMapping(value = "insertNote", method = RequestMethod.POST)
 	@ResponseBody
@@ -57,12 +57,8 @@ public class NoteController {
 	@RequestMapping(value = "deleteNote", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Response> deleteNote(@RequestBody Note note3) {
-		logger.info("Before Delete Note");
-		/*
-		 * Note note=new Note(); note.setNotes_id(7); Register user=new Register();
-		 * user.setUser_id(2); note.setUser(user);
-		 */
 
+		logger.info("Before Delete Note");
 		service.deleteNode(note3);
 		logger.info("After deleting note");
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
@@ -75,7 +71,6 @@ public class NoteController {
 		logger.info("Before getNotebyId");
 		logger.info(note4);
 		note4 = service.getNotebyId(note4);
-		logger.info(note4);
 		logger.info("After getNotebyId");
 		resp.setMessage(note4.toString());
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
@@ -89,7 +84,6 @@ public class NoteController {
 		List<Note> notes = service.getAllNotes();
 		logger.info("After IndexAllNotes");
 		logger.info(notes);
-		/* elasticsearch.indexAllNotes(notes); */
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
 	}
 
@@ -167,10 +161,10 @@ public class NoteController {
 	// Funtionalities for Collabrators
 	@RequestMapping(value = "addCollabrators", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Response> addCollaborators(@RequestBody List<Integer> newCollabs,int noteid) {
+	public ResponseEntity<Response> addCollaborators(@RequestBody List<Integer> newCollabs, int noteid) {
 
 		List<Integer> collabs = service.checkExistingCollabrators(noteid);
-		logger.info(""+collabs);
+		logger.info("" + collabs);
 		return new ResponseEntity<Response>(new Response(), HttpStatus.OK);
 	}
 }
