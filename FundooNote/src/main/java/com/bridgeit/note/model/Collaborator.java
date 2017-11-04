@@ -1,12 +1,11 @@
 package com.bridgeit.note.model;
 
-public class Collabrator {
+public class Collaborator {
 
 	private int sharedFromId;
 	private int sharedToId;
-	private int notes_id;
+	private int notes_Id;
 	private int collabId;
-
 
 	public int getSharedFromId() {
 		return sharedFromId;
@@ -25,11 +24,11 @@ public class Collabrator {
 	}
 
 	public int getNotesId() {
-		return notes_id;
+		return notes_Id;
 	}
 
-	public void setNotesId(int notes_id) {
-		this.notes_id = notes_id;
+	public void setNotesId(int notes_Id) {
+		this.notes_Id = notes_Id;
 	}
 
 	public int getCollabId() {
@@ -40,10 +39,9 @@ public class Collabrator {
 		this.collabId = collabId;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Collabrator [sharedFromId=" + sharedFromId + ", sharedToId=" + sharedToId + ", notes_id=" + notes_id
+		return "Collabrator [sharedFromId=" + sharedFromId + ", sharedToId=" + sharedToId + ", notes_id=" + notes_Id
 				+ ", collabId=" + collabId + "]";
 	}
 

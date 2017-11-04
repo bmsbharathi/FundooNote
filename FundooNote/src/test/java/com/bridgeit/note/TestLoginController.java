@@ -1,11 +1,9 @@
 package com.bridgeit.note;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.Logger; 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
-
 import com.bridgeit.note.model.Login;
 import com.bridgeit.note.model.Note;
 import com.bridgeit.note.model.User;

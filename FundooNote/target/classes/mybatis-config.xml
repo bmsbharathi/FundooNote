@@ -9,6 +9,7 @@
 		<typeAlias type="com.bridgeit.note.model.Login" alias="Login"></typeAlias>
 		<typeAlias type="com.bridgeit.note.model.User" alias="User"></typeAlias>
 		<typeAlias type="com.bridgeit.note.model.Note" alias="Note"></typeAlias>
+		<typeAlias type="com.bridgeit.note.model.Collaborator" alias="Collaborator"></typeAlias>
 	</typeAliases>
 	
 	<environments default="development">
