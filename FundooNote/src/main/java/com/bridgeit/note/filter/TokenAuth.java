@@ -48,12 +48,11 @@ public class TokenAuth implements Filter {
 			String tokenfromredis = RedisUtility.gettokenfromredis(tokenuserid);
 			System.out.println(tokenfromredis);
 
-			if (token.equals(tokenfromredis)) {
-				if (new Date().before(expdate)) {
-					System.out.println("Yes Inside Filter Pre Processing");
-					chain.doFilter(request, response);
-					System.out.println("Filtering Done..");
-				}
+			if (token.equals(tokenfromredis) && new Date().before(expdate)) {
+
+				System.out.println("Yes Inside Filter Pre Processing");
+				chain.doFilter(request, response);
+				System.out.println("Filtering Done..");
 			}
 
 		} catch (io.jsonwebtoken.ExpiredJwtException e) {
@@ -70,7 +69,7 @@ public class TokenAuth implements Filter {
 
 	@Override
 	public void destroy() {
-		
+
 		System.out.println("inside filter - destroy()");
 	}
 
