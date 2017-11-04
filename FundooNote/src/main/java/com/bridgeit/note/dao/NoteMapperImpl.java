@@ -180,13 +180,32 @@ public class NoteMapperImpl implements NoteMapper {
 			allCollabs = notemapper.getAllCollaborators(noteid);
 			session.commit();
 			logger.info("getting all Collabrators of " + noteid + " the database");
-		
+
 		} finally {
 			session.close();
 		}
-		
+
 		return allCollabs;
 
+	}
+
+	public void addCollaborators(int noteid, List<Integer> newCollabIds) {
+		session = MyBatisUtil.getSqlSessionFactory().openSession();
+
+		try {
+
+			NoteMapper notemapper = session.getMapper(NoteMapper.class);
+			
+			for( int collabId : newCollabIds) {
+				notemapper.addCollaborators(collabId);
+				session.commit();
+				logger.info("adding Collabrator "+collabId+" of " + noteid + " the database");	
+			}
+			
+
+		} finally {
+			session.close();
+		}
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.bridgeit.note.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +20,7 @@ import com.bridgeit.note.elasticsearch.ElasticSearch;
 import com.bridgeit.note.json.Response;
 import com.bridgeit.note.model.Note;
 import com.bridgeit.note.service.NoteService;
+import com.bridgeit.note.service.UtilityService;
 
 @Controller
 @RequestMapping("auth/")
@@ -26,6 +30,9 @@ public class NoteController {
 
 	@Autowired
 	private NoteService service;
+
+	@Autowired
+	private UtilityService utility;
 
 	@Autowired
 	private ElasticSearch elasticsearch;
@@ -105,7 +112,7 @@ public class NoteController {
 	@RequestMapping(value = "archiveNote", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Response> archiveNote(@RequestBody Note note6) {
-	
+
 		logger.info("Archiving the selected user node");
 		service.archiveNote(note6);
 		logger.info("After archiving the node");
@@ -161,12 +168,28 @@ public class NoteController {
 	}
 
 	// Funtionalities for Collabrators
-	@RequestMapping(value = "addCollabrators", method = RequestMethod.POST)
+	@RequestMapping(value = "addCollaborators/{noteid}/{sharedFrom}", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Response> addCollaborators(@RequestBody List<Integer> newCollabs, int noteid) {
+	public ResponseEntity<Response> addCollaborators(@PathVariable int noteid, @PathVariable int sharedFrom,
+			@RequestBody List<String> newCollabs) {
 
-		List<Integer> collabs = service.checkExistingCollabrators(noteid);
-		logger.info("" + collabs);
+		List<Integer> newCollabIds = new ArrayList<Integer>();
+		for (String email : newCollabs) {
+
+			Integer uid = utility.checkUserByEmail(email).getUserId();
+			if( uid == 0 || uid == null ) {
+				
+				logger.warn("Cannot find User "+email);
+			}
+			newCollabIds.add(uid);
+		}
+
+		List<Integer> collabs = service.getExistingCollabrators(noteid);
+		if (collabs.isEmpty()) {
+
+			service.addCollaborators(noteid, newCollabIds);
+		}
+
 		return new ResponseEntity<Response>(new Response(), HttpStatus.OK);
 	}
 }
