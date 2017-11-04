@@ -26,7 +26,7 @@ public class GoogleLoginController {
 	private static Logger logger = Logger.getLogger(GoogleLoginController.class);
 
 	@RequestMapping(value = "/loginG")
-	public void SocialLogin(HttpServletRequest request, HttpServletResponse response) {
+	public void socialLogin(HttpServletRequest request, HttpServletResponse response) {
 
 		logger.warn("Inside login with Google");
 		String lsr = request.getRequestURL().toString();
@@ -50,7 +50,7 @@ public class GoogleLoginController {
 	}
 
 	@RequestMapping(value = "/postGoogle")
-	public String PostSocialLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+	public String postSocialLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws IOException {
 
 		logger.warn("In post google");

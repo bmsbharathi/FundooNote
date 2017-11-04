@@ -20,10 +20,6 @@ import com.bridgeit.note.utility.RedisUtility;
  */
 public class TokenAuth implements Filter {
 
-	public TokenAuth() {
-
-	}
-
 	public void init(FilterConfig fConfig) throws ServletException {
 
 		System.out.println("Inside Filter..");
@@ -72,8 +68,10 @@ public class TokenAuth implements Filter {
 
 	}
 
+	@Override
 	public void destroy() {
-
+		
+		System.out.println("inside filter - destroy()");
 	}
 
 }
