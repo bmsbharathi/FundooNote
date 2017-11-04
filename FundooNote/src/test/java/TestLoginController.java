@@ -114,7 +114,7 @@ public class TestLoginController {
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjM0NSIsImlhdCI6MTUwOTE3MTkzOSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiQW5pa2V0aCdzIFRva2VucyIsIk5hbWUiOiJBbmlrZXRoIEJvbmRhZGEiLCJNb2JpbGUiOjEyMzQ1LCJJZCI6MSwiZXhwIjoxNTA5MTc1OTM5fQ.6YnPuGXoJSMde8tA1JwI2dLvjV3uSYRpM7R0e594wig";
 		System.out.println("Testing Notes Functionalities");
 		given().contentType("application/json").header("token", token).body(note2).when().post("auth/updateNote").then()
-				.statusCode(200);
+				.statusCode(200).assertThat();
 
 	}
 
@@ -177,7 +177,7 @@ public class TestLoginController {
 		map.put("userid", 10);
 		map.put("searchString", content);
 		given().contentType(ContentType.JSON).header("token", token).body(map).when().post("auth/serchAllNotesElastic")
-				.then().statusCode(200);
+				.then().statusCode(200).assertThat();
 
 	}
 
