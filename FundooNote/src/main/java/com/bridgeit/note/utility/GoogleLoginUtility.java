@@ -30,7 +30,7 @@ public class GoogleLoginUtility {
 
 	public static String getGmailUrl(String apiRedirectUrl, String stateCode) {
 
-		System.out.println("Inside Gmail URL");
+		logger.warn("Inside Gmail URL");
 		apiRedirectUrl = apiRedirectUrl + sGmail_REDIRECT_URI;
 
 		return new String().format(sGmail_URL, new String[] { sGmail_CLIENT_ID, apiRedirectUrl, stateCode, sScope });
@@ -39,9 +39,9 @@ public class GoogleLoginUtility {
 
 	public static GoogleProfile authUser(String authcode, String apiRedirectUrl) {
 
-		System.out.println("Inside to get user profile");
+		logger.warn("Inside to get user profile");
 		String accessToken = getAcessToken(authcode, apiRedirectUrl);
-		System.out.println(authcode + " " + apiRedirectUrl + " " + accessToken);
+		logger.warn(authcode + " " + apiRedirectUrl + " " + accessToken);
 		return getuserProfile(accessToken);
 	}
 
@@ -71,7 +71,7 @@ public class GoogleLoginUtility {
 
 		ResteasyClient client = new ResteasyClientBuilder().build();
 		ResteasyWebTarget target = client.target(accTokenUrl);
-		System.out.println("here");
+		logger.warn("here");
 
 		Form form = new Form();
 		form.param("client_id", sGmail_CLIENT_ID);

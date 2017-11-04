@@ -25,5 +25,5 @@
 	<select id="checkUserByEmail" parameterType="String" resultType="User">
 		select * from fundoouser where email=#{email}
 	</select>
-
+	
 </mapper> 

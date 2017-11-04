@@ -1,0 +1,13 @@
+
+com.bridgeit.note.controller
+com.bridgeit.note.dao
+com.bridgeit.note.elasticsearch
+com.bridgeit.note.filter
+com.bridgeit.note.jms
+com.bridgeit.note.json
+com.bridgeit.note.model
+com.bridgeit.note.mybatisutility
+com.bridgeit.note.service
+com.bridgeit.note.testpackage
+com.bridgeit.note.utility
+com.bridgeit.note.validator

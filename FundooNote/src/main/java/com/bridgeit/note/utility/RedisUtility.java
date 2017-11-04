@@ -13,7 +13,7 @@ import redis.clients.jedis.Jedis;
 public class RedisUtility {
 
 	private final static Logger logger = Logger.getLogger(RedisUtility.class);
-	static Jedis jedis = new Jedis("localhost");
+	private static Jedis jedis = new Jedis("localhost");
 
 	// Setting the Token in Redis cache
 	public static void sendtokenredis(int i, String token) {

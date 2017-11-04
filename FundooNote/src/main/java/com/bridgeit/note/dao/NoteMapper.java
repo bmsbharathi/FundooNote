@@ -26,4 +26,6 @@ public interface NoteMapper {
 	public void setRemainder(Note note);
 
 	public List<Note> getAllNotes();
+	
+	public List<Integer> getAllCollaborators(int noteid);
 }

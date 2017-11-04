@@ -1,6 +1,6 @@
 package com.bridgeit.note.controller;
 
-import java.io.IOException;  
+import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,26 +19,26 @@ import com.bridgeit.note.utility.GoogleLoginUtility;
 
 @Controller
 public class GoogleLoginController {
-	
+
 	@Autowired
-	UtilityService utility;
+	private UtilityService utility;
 
 	private static Logger logger = Logger.getLogger(GoogleLoginController.class);
 
 	@RequestMapping(value = "/loginG")
 	public void SocialLogin(HttpServletRequest request, HttpServletResponse response) {
-		
-		System.out.println("Inside login with Google");
+
+		logger.warn("Inside login with Google");
 		String lsr = request.getRequestURL().toString();
-		System.out.println(lsr);
+		logger.warn(lsr);
 		String apiRedirectUrl = lsr.substring(0, lsr.lastIndexOf('/'));
-		System.out.println(apiRedirectUrl);
+		logger.warn(apiRedirectUrl);
 		String stateCode = UUID.randomUUID().toString();
-		System.out.println(stateCode);
-		System.out.println(request.getSession());
+		logger.warn(stateCode);
+		logger.warn(request.getSession());
 		request.getSession().setAttribute("STATE", stateCode);
 		String gmailUrl = GoogleLoginUtility.getGmailUrl(apiRedirectUrl, stateCode);
-		System.out.println(gmailUrl);
+		logger.warn(gmailUrl);
 
 		try {
 			response.sendRedirect(gmailUrl);
@@ -53,7 +53,7 @@ public class GoogleLoginController {
 	public String PostSocialLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws IOException {
 
-		System.out.println("In post google");
+		logger.warn("In post google");
 		String sessioncheck = (String) request.getSession().getAttribute("STATE");
 		String statecode = request.getParameter("state");
 		if (sessioncheck == null || !sessioncheck.equals(statecode)) {
@@ -70,11 +70,11 @@ public class GoogleLoginController {
 		if (error != null && error.trim().isEmpty()) {
 
 			logger.error(error);
-			System.out.println("Error is present here");
+			logger.warn("Error is present here");
 			response.sendRedirect("login");
 		}
 		String authcode = request.getParameter("code");
-		System.out.println(authcode);
+		logger.warn(authcode);
 
 		String lsr = request.getRequestURL().toString();
 		String apiRedirectUrl = lsr.substring(0, lsr.lastIndexOf('/'));

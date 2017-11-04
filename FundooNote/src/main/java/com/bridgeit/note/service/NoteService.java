@@ -17,7 +17,7 @@ import com.bridgeit.note.model.Note;
 public class NoteService {
 
 	@Autowired
-	NoteMapperImpl noteMapperImpl;
+	private NoteMapperImpl noteMapperImpl;
 
 	//To create a new note
 	public void insertNote(Note newnote) {
@@ -76,6 +76,14 @@ public class NoteService {
 		allNotes = noteMapperImpl.getAllNotes();
 
 		return allNotes;
+	}
+
+	//Getting all the collaborators for a particular note
+	public List<Integer> checkExistingCollabrators(int noteid) {
+		
+		List<Integer> allCollabs = noteMapperImpl.getAllCollaborators(noteid);
+		
+		return allCollabs;
 	}
 
 }
