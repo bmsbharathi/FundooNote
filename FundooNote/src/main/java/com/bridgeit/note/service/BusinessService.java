@@ -55,12 +55,12 @@ public class BusinessService {
 
 			// Storing into Redis
 			logger.info("After sending to redis");
-			logger.info(reg.getUser_id());
-			RedisUtility.sendtokenredis(reg.getUser_id(), token);
+			logger.info(reg.getUserId());
+			RedisUtility.sendtokenredis(reg.getUserId(), token);
 
 			// Retrieving from Redis
 			logger.info("After fetching the value from Redis");
-			String redistoken = RedisUtility.gettokenfromredis(reg.getUser_id());
+			String redistoken = RedisUtility.gettokenfromredis(reg.getUserId());
 			logger.info("Redis Final generation" + redistoken);
 			tokenobject.setToken(token);
 

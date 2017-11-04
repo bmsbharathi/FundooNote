@@ -58,7 +58,7 @@ public class NoteMapperImpl implements NoteMapper {
 		try {
 			NoteMapper notemapper = session.getMapper(NoteMapper.class);
 			notemapper.deleteNote(note);
-			elasticSearch.deleteElasticNotes(note.getNotes_id());
+			elasticSearch.deleteElasticNotes(note.getNotesId());
 			session.commit();
 		} finally {
 			session.close();

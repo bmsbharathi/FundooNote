@@ -5,47 +5,45 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GoogleToken {
 
-	private String access_token;
-	private String token_type;
-	private String expires_in;
-	private String id_token;
-
-	public String getAccess_token() {
-		return access_token;
+	private String accessToken;
+	private String tokenType;
+	private String expiresIn;
+	private String idToken;
+	
+	public GoogleToken() {
+		super();
 	}
 
-	public void setAccess_token(String access_token) {
-		this.access_token = access_token;
+	public String getAccessToken() {
+		return accessToken;
 	}
 
-	public String getExpires_in() {
-		return expires_in;
+	public void setAccessToken(String access_token) {
+		this.accessToken = access_token;
 	}
 
-	public void setExpires_in(String expires_in) {
-		this.expires_in = expires_in;
+	public String getTokenType() {
+		return tokenType;
 	}
 
-	public String getId_token() {
-		return id_token;
+	public void setTokenType(String tokenType) {
+		this.tokenType = tokenType;
 	}
 
-	public void setId_token(String id_token) {
-		this.id_token = id_token;
+	public String getExpiresIn() {
+		return expiresIn;
 	}
 
-	public String getToken_type() {
-		return token_type;
+	public void setExpiresIn(String expiresIn) {
+		this.expiresIn = expiresIn;
 	}
 
-	public void setToken_type(String token_type) {
-		this.token_type = token_type;
+	public String getIdToken() {
+		return idToken;
 	}
 
-	@Override
-	public String toString() {
-		return "GoogleToken [access_token=" + access_token + ", token_type=" + token_type + ", expires_in=" + expires_in
-				+ ", id_token=" + id_token + "]";
+	public void setIdToken(String idToken) {
+		this.idToken = idToken;
 	}
 
 }

@@ -109,7 +109,7 @@ public class NoteController {
 		logger.info("Archiving the selected user node");
 		service.archiveNote(note6);
 		logger.info("After archiving the node");
-		resp.setStatus(note6.getUser().getUser_id());
+		resp.setStatus(note6.getUser().getUserId());
 		resp.setMessage("Archived");
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
 	}
@@ -121,7 +121,7 @@ public class NoteController {
 		logger.info("Trashing the selected user note");
 		service.trashNote(note7);
 		logger.info("After trashing the node");
-		resp.setStatus(note7.getUser().getUser_id());
+		resp.setStatus(note7.getUser().getUserId());
 		resp.setMessage("Archived");
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
 	}
@@ -135,9 +135,9 @@ public class NoteController {
 		if (note.isTrash() && note.isDeletefromtrash()) {
 			service.deleteNode(note);
 			logger.info("Deleted the node permanently");
-			resp.setStatus(note.getUser().getUser_id());
+			resp.setStatus(note.getUser().getUserId());
 			resp.setMessage("Node deleted from trash");
-			elasticsearch.deleteElasticNotes(note.getNotes_id());
+			elasticsearch.deleteElasticNotes(note.getNotesId());
 		} else {
 
 			logger.info("Not deleted");
@@ -154,8 +154,8 @@ public class NoteController {
 		service.setRemainder(note9);
 		logger.info("Remainder Set");
 		resp.setStatus(100);
-		resp.setMessage("Remainder for the user " + note9.getUser().getUser_id() + " and note number of "
-				+ note9.getNotes_id() + " has been set succesfully to the note by the user");
+		resp.setMessage("Remainder for the user " + note9.getUser().getUserId() + " and note number of "
+				+ note9.getNotesId() + " has been set succesfully to the note by the user");
 
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
 	}
