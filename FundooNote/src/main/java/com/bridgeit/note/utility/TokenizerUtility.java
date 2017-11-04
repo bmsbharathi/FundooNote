@@ -18,8 +18,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class TokenizerUtility {
 
 	private final static Logger logger = Logger.getLogger(TokenizerUtility.class);
-	static String CLIENT_ID = "abcde";
-	final static String CLIENT_SECRET = "asdasdxccvxc";
+	private static String CLIENT_ID = "abcde";
+	private final static String CLIENT_SECRET = "asdasdxccvxc";
 
 	// Creating a new JWT token
 	public static String getToken(User reg)
@@ -29,7 +29,7 @@ public class TokenizerUtility {
 		long currentmillis = System.currentTimeMillis();
 		Date now = new Date(currentmillis);
 		logger.info(now);
-		System.out.println("----------------------" + reg);
+		logger.info("----------------------" + reg);
 		JwtBuilder builder = Jwts.builder().setId(CLIENT_ID).setIssuedAt(now).setSubject("JWT Token")
 				.setIssuer("FundooApplication").claim("Name", reg.getFullName()).claim("Mobile", reg.getMobileNo())
 				.claim("Id", reg.getUser_id()).signWith(SignatureAlgorithm.HS256, CLIENT_SECRET);
