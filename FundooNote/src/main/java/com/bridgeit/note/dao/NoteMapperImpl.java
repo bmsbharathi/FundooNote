@@ -197,7 +197,7 @@ public class NoteMapperImpl implements NoteMapper {
 			NoteMapper notemapper = session.getMapper(NoteMapper.class);
 			
 			for( int collabId : newCollabIds) {
-				notemapper.addCollaborators(collabId);
+				/*notemapper.addCollaborators(collabId, noteid);*/
 				session.commit();
 				logger.info("adding Collabrator "+collabId+" of " + noteid + " the database");	
 			}
