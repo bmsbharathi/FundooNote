@@ -148,7 +148,6 @@ public class TestLoginController {
 		note1.setUser(reg1);
 		note1.setTrash(true);
 		note1.setDeletefromtrash(true);
-		;
 		logger.warn("Testing Notes Functionalities");
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQ1MDY4MSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NDU0NjgxfQ.ydGwCeQA7LQMH1YyyBSjATEkKnwqAncRvRLsuDB1fqk";
 		given().contentType(ContentType.JSON).header("token", token).body(note1).when().post("auth/deleteFromTrash")
@@ -177,7 +176,6 @@ public class TestLoginController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userid", 10);
 		map.put("searchString", content);
-
 		given().contentType(ContentType.JSON).header("token", token).body(map).when().post("auth/serchAllNotesElastic")
 				.then().statusCode(200);
 

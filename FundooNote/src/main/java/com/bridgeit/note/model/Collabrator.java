@@ -7,12 +7,7 @@ public class Collabrator {
 	private int notes_id;
 	private int collabId;
 
-	public Collabrator() {
-		super();
 
-	}
-
-	
 	public int getSharedFromId() {
 		return sharedFromId;
 	}

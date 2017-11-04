@@ -8,10 +8,6 @@ public class User {
 	private String email;
 	private String password;
 
-	public User() {
-		super();
-	}
-
 	public int getUser_id() {
 		return user_id;
 	}
