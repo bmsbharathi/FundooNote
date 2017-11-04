@@ -1,12 +1,9 @@
 package com.bridgeit.note.json;
 
 public class TokenResponse {
+	
 	private String userstatus;
 	private String token;
-
-	public TokenResponse() {
-		super();
-	}
 
 	public String getUserstatus() {
 		return userstatus;

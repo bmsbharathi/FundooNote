@@ -5,10 +5,6 @@ public class Response {
 	private int status;
 	private String message;
 
-	public Response() {
-		super();
-	}
-
 	public int getStatus() {
 		return status;
 	}
