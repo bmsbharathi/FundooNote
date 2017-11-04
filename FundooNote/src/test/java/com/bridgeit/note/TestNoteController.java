@@ -1,3 +1,5 @@
+package com.bridgeit.note;
+
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -10,8 +12,6 @@ import com.bridgeit.note.model.User;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-
 import static io.restassured.RestAssured.given;
 
 public class TestNoteController {
@@ -21,7 +21,7 @@ public class TestNoteController {
 	private static final Logger logger = Logger.getLogger(TestNoteController.class);
 
 	@BeforeClass
-	public static void setup() {
+	public static void init() {
 		RestAssured.baseURI = "http://localhost";
 		RestAssured.port = 8080;
 		RestAssured.basePath = "/FundooNote";

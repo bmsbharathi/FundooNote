@@ -1,4 +1,6 @@
-import org.apache.log4j.Logger; 
+package com.bridgeit.note;
+
+import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -14,7 +16,7 @@ public class TestRegisterController {
 	private static final Logger logger = Logger.getLogger(TestRegisterController.class);
 
 	@BeforeClass
-	public static void setup() {
+	public static void init() {
 
 		RestAssured.baseURI = "http://localhost";
 		RestAssured.port = 8080;
@@ -48,7 +50,8 @@ public class TestRegisterController {
 	public void insertUserWithoutAnyError() {
 
 		logger.info("insertUserWithoutAnyError()");
-		given().contentType("application/json").body(user1).when().post("/register").then().statusCode(200)	.assertThat();
+		given().contentType("application/json").body(user1).when().post("/register").then().statusCode(200)
+				.assertThat();
 	}
 
 	@Test
@@ -56,7 +59,8 @@ public class TestRegisterController {
 	public void testInsertRegister() {
 
 		logger.info("insert user");
-		given().body(user2).contentType("application/json").when().post("/register").then().statusCode(200)	.assertThat();
+		given().body(user2).contentType("application/json").when().post("/register").then().statusCode(200)
+				.assertThat();
 	}
 
 }
