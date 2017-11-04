@@ -1,3 +1,4 @@
+package com.bridgeit.note;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;

@@ -66,13 +66,14 @@ public class NoteController {
 
 	@RequestMapping(value = "getNotebyId", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Response> getNotebyId(@RequestBody Note note4) {
+	public ResponseEntity<Response> getNotebyId(@RequestBody Note note) {
 
 		logger.info("Before getNotebyId");
-		logger.info(note4);
-		note4 = service.getNotebyId(note4);
+		logger.info(note);
+		Note note2 = service.getNotebyId(note);
 		logger.info("After getNotebyId");
-		resp.setMessage(note4.toString());
+		resp.setMessage(note2.getDescription());
+
 		return new ResponseEntity<Response>(resp, HttpStatus.OK);
 	}
 
@@ -104,6 +105,7 @@ public class NoteController {
 	@RequestMapping(value = "archiveNote", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Response> archiveNote(@RequestBody Note note6) {
+	
 		logger.info("Archiving the selected user node");
 		service.archiveNote(note6);
 		logger.info("After archiving the node");

@@ -1,3 +1,4 @@
+package com.bridgeit.note;
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -25,7 +26,7 @@ public class TestLoginController {
 	private final Logger logger = Logger.getLogger(TestRegisterController.class);
 
 	@BeforeClass
-	public static void setup() {
+	public static void init() {
 
 		RestAssured.baseURI = "http://localhost";
 		RestAssured.port = 8080;
@@ -103,7 +104,7 @@ public class TestLoginController {
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQzNDIxMCwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NDM4MjEwfQ.cd3UpaVXuvJqAWAOd-Hc7I_kV8JIWP7B2Ud2BjTn-tQ";
 		System.out.println("Testing Notes Functionalities");
 		given().contentType("application/json").header("token", token).body(note1).when().post("auth/insertNote").then()
-				.statusCode(200);
+				.statusCode(200).assertThat();
 
 	}
 
@@ -125,7 +126,7 @@ public class TestLoginController {
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjM0NSIsInN1YiI6IkpXVCBUb2tlbiIsImlzcyI6IkFuaWtldGgncyBUb2tlbnMiLCJOYW1lIjoiQmhhcmF0aGkiLCJNb2JpbGUiOjczNzMsIklkIjoyfQ.99TE3zxvrU4fistZ5_JWcVZO71dqxPW6v4RgJbAD2q0";
 		System.out.println("Testing Notes Functionalities");
 		given().contentType("application/json").header("token", token).body(note3).when().post("auth/deleteNote").then()
-				.statusCode(200);
+				.statusCode(200).assertThat();
 
 	}
 
@@ -136,7 +137,7 @@ public class TestLoginController {
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjM0NSIsInN1YiI6IkpXVCBUb2tlbiIsImlzcyI6IkFuaWtldGgncyBUb2tlbnMiLCJOYW1lIjoiQmhhcmF0aGkiLCJNb2JpbGUiOjczNzMsIklkIjoyfQ.99TE3zxvrU4fistZ5_JWcVZO71dqxPW6v4RgJbAD2q0";
 		System.out.println("Testing Notes Functionalities");
 		given().contentType("application/json").header("token", token).body(note4).when().post("auth/getNotebyId")
-				.then().statusCode(200);
+				.then().statusCode(200).assertThat();
 	}
 
 	@Test
@@ -151,7 +152,7 @@ public class TestLoginController {
 		logger.warn("Testing Notes Functionalities");
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQ1MDY4MSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NDU0NjgxfQ.ydGwCeQA7LQMH1YyyBSjATEkKnwqAncRvRLsuDB1fqk";
 		given().contentType(ContentType.JSON).header("token", token).body(note1).when().post("auth/deleteFromTrash")
-				.then().statusCode(200);
+				.then().statusCode(200).assertThat();
 
 	}
 
@@ -162,7 +163,7 @@ public class TestLoginController {
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQzMDE0MSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6MTAsImV4cCI6MTUwOTQzNDE0MX0.T2aAfPvniIoWxJn87kb8WsMV40ToWb_RewFxmtdNdHI";
 		System.out.println("Testing Elastic Notes Functionalities");
 		given().contentType("application/json").header("token", token).body(note5).when().post("auth/selectAllNotes")
-				.then().statusCode(200);
+				.then().statusCode(200).assertThat();
 
 	}
 
@@ -188,18 +189,18 @@ public class TestLoginController {
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQzMDE0MSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6MTAsImV4cCI6MTUwOTQzNDE0MX0.T2aAfPvniIoWxJn87kb8WsMV40ToWb_RewFxmtdNdHI";
 		logger.warn("Indexing all Notes");
 		given().contentType(ContentType.JSON).header("token", token).body(note6).when().post("auth/indexAllNotes")
-				.then().statusCode(200);
+				.then().statusCode(200).assertThat();
 
 	}
 
 	@Test
-
+	@Ignore
 	public void testCollabrator() {
 
 		logger.warn("Testing Collabrator - adding collabrators");
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTYwMTU2Nywic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NjA1NTY3fQ.oVeGRg08bDqnsYWyWrtt_RHJ5UXcJf6qVn8AirxpdvQ";
 		given().contentType(ContentType.JSON).header("token", token).param("collabId", 10).when()
-				.post("auth/addCollaborators").then().statusCode(200);
+				.post("auth/addCollaborators").then().statusCode(200).assertThat();
 
 	}
 
