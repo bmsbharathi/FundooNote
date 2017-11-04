@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bridgeit.note.elasticsearch.ElasticSearch;
+import com.bridgeit.note.model.Collaborator;
 import com.bridgeit.note.model.Note;
 import com.bridgeit.note.mybatisutility.MyBatisUtil;
 
@@ -189,21 +190,19 @@ public class NoteMapperImpl implements NoteMapper {
 
 	}
 
-	public void addCollaborators(int noteid, List<Integer> newCollabIds) {
+	public void addCollaborators(int noteid, int newCollabId) {
 		session = MyBatisUtil.getSqlSessionFactory().openSession();
 
 		try {
+			Collaborator collab = new Collaborator();
+			collab.setNotesId(noteid);
 
 			NoteMapper notemapper = session.getMapper(NoteMapper.class);
-			
-			for( int collabId : newCollabIds) {
-				/*notemapper.addCollaborators(collabId, noteid);*/
-				session.commit();
-				logger.info("adding Collabrator "+collabId+" of " + noteid + " the database");	
-			}
-			
+			notemapper.addCollaborators(noteid, newCollabId);
+			session.commit();
 
-		} finally {
+		}
+		finally {
 			session.close();
 		}
 	}

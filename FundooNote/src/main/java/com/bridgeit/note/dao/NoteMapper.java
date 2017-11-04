@@ -29,6 +29,6 @@ public interface NoteMapper {
 
 	public List<Integer> getAllCollaborators(int noteid);
 
-	public void addCollaborators(int noteid, List<Integer> newCollabIds);
+	public void addCollaborators(int noteid, int newCollabId);
 
 }

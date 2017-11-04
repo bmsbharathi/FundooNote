@@ -76,7 +76,8 @@
 	</update>
 
 	<insert id="addCollaborators" useGeneratedKeys="true">
-		insert into collaborator (shared_from_id,shared_from_id,note_id) values
+		insert into
+		collaborator (shared_from_id,shared_to_id,note_id) values
 		(#{sharedFromId},#{sharedToId},#{notes_Id})
 	</insert>
 
