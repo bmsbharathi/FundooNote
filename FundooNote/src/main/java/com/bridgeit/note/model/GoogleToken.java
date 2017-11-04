@@ -9,10 +9,6 @@ public class GoogleToken {
 	private String tokenType;
 	private String expiresIn;
 	private String idToken;
-	
-	public GoogleToken() {
-		super();
-	}
 
 	public String getAccessToken() {
 		return accessToken;

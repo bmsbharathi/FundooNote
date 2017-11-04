@@ -1,8 +1,10 @@
 package com.bridgeit.note;
+
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.internal.runners.statements.Fail;
 
 import com.bridgeit.note.model.Login;
 import com.bridgeit.note.model.Note;
@@ -10,8 +12,10 @@ import com.bridgeit.note.model.User;
 
 import static io.restassured.RestAssured.given;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.restassured.RestAssured;
@@ -76,7 +80,6 @@ public class TestLoginController {
 	}
 
 	@Test
-	@Ignore
 	public void testLogin() {
 
 		logger.info("testlogin()");
@@ -89,12 +92,13 @@ public class TestLoginController {
 	@Ignore
 	public void testLogin1() {
 
-		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjM0NSIsImlhdCI6MTUwODkwNDYxNiwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiQW5pa2V0aCdzIFRva2VucyIsIk5hbWUiOiJMdWlzIFN1YXJleiIsIk1vYmlsZSI6NDcyMzQyLCJJZCI6NCwiZXhwIjoxNTA4OTA4NjE2fQ.uYFTQcTIWOiTM1pQCX4A_3dAh_ofAQjXc6jHsOgZhsQ";
+		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTc4OTc1NCwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NzkzNzU0fQ.j7xeojlZiHdCv0lLlDnkqF3AGbpwq-7-EO8GOJsNZlI";
 		System.out.println("testRegister user exists");
 		Response resp = given().contentType("application/json").header("token", token).body(user4).when()
 				.post("auth/trashNote");
 		logger.info(resp.asString());
 		resp.then().statusCode(200);
+
 	}
 
 	@Test
@@ -189,7 +193,7 @@ public class TestLoginController {
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTQzMDE0MSwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6MTAsImV4cCI6MTUwOTQzNDE0MX0.T2aAfPvniIoWxJn87kb8WsMV40ToWb_RewFxmtdNdHI";
 		logger.warn("Indexing all Notes");
 		given().contentType(ContentType.JSON).header("token", token).body(note6).when().post("auth/indexAllNotes")
-				.then().statusCode(200).assertThat();
+				.then().statusCode(200);
 
 	}
 
@@ -197,10 +201,17 @@ public class TestLoginController {
 	@Ignore
 	public void testCollabrator() {
 
+		int noteid = 5;
+		int sharedFrom = 8;
+		List<String> collaboratorsEmail = new ArrayList<String>();
+		collaboratorsEmail.add("satya@gmail.com");
+		collaboratorsEmail.add("MalarVizhi.ho@gmail.com");
+		collaboratorsEmail.add("abc@cdef.com");
+
 		logger.warn("Testing Collabrator - adding collabrators");
-		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTYwMTU2Nywic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NjA1NTY3fQ.oVeGRg08bDqnsYWyWrtt_RHJ5UXcJf6qVn8AirxpdvQ";
-		given().contentType(ContentType.JSON).header("token", token).param("collabId", 10).when()
-				.post("auth/addCollaborators").then().statusCode(200).assertThat();
+		String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYmNkZSIsImlhdCI6MTUwOTc4OTc1NCwic3ViIjoiSldUIFRva2VuIiwiaXNzIjoiRnVuZG9vQXBwbGljYXRpb24iLCJJZCI6OCwiZXhwIjoxNTA5NzkzNzU0fQ.j7xeojlZiHdCv0lLlDnkqF3AGbpwq-7-EO8GOJsNZlI";
+		given().contentType(ContentType.JSON).header("token", token).pathParam("noteid", noteid).pathParam("sharedFrom", sharedFrom).body(collaboratorsEmail).when()
+				.post("auth/addCollaborators/{noteid}/{sharedFrom}").then().statusCode(200);
 
 	}
 

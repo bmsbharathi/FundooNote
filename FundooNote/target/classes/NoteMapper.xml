@@ -75,9 +75,9 @@
 		notes_id=#{notes_id}
 	</update>
 
-	<!-- <select id="addCollaborators" parameterType="String" resultType="User"> 
-		select * from fundoouser where email=#{email} </select> <select id="getAllCollaborators" 
-		parameterType="Integer" resultType="collabrator"> select * from collaborator 
-		where notes_id=#{notes_id} </select> -->
+	<select id="getAllCollaborators" parameterType="Integer"
+		resultType="collabrator"> select * from collaborator
+		where notes_id=#{notes_id}
+	</select>
 
 </mapper> 
