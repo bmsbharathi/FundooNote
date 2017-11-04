@@ -88,6 +88,10 @@ public class NoteService {
 
 	public void addCollaborators(int noteid, List<Integer> newCollabIds) {
 
-		noteMapperImpl.addCollaborators(noteid, newCollabIds);
+		for (int uId : newCollabIds) {
+
+			noteMapperImpl.addCollaborators(noteid, uId);
+		}
+
 	}
 }

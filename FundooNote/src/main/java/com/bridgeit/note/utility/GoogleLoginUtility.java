@@ -68,7 +68,7 @@ public class GoogleLoginUtility {
 	private static String getAcessToken(String authcode, String apiRedirectUrl) {
 
 		logger.warn("Inside gmail for Access token");
-		apiRedirectUrl = apiRedirectUrl + sGmail_REDIRECT_URI;
+		apiRedirectUrl.concat(sGmail_REDIRECT_URI);
 		String accTokenUrl = sGmail_ACCESS_TOKEN_URL;
 
 		ResteasyClient client = new ResteasyClientBuilder().build();
