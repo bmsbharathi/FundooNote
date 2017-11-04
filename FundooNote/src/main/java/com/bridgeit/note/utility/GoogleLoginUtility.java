@@ -37,11 +37,11 @@ public class GoogleLoginUtility {
 
 	}
 
-	public static GoogleProfile authUser(String authcode, String apiRedirectUrl) {
+	public static GoogleProfile authUser(String authcode, String redirectUrl) {
 
 		logger.warn("Inside to get user profile");
-		String accessToken = getAcessToken(authcode, apiRedirectUrl);
-		logger.warn(authcode + " " + apiRedirectUrl + " " + accessToken);
+		String accessToken = getAcessToken(authcode, redirectUrl);
+		logger.warn(authcode + " " + redirectUrl + " " + accessToken);
 		return getuserProfile(accessToken);
 	}
 
