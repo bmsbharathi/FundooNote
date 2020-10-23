@@ -2,3 +2,4 @@
 *.lst
 *.o
 *.object
+target/
